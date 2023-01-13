@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -9,17 +10,10 @@ public class ClipsChanger : MonoBehaviour
     VideoPlayer player;
     [SerializeField]
     VideoClip[] clips;
+    [SerializeField]
+    UnityEvent onFinish;
     int index = 0;
-    string path;
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        //foreach (VideoClip video in clips)
-        //{
-        //    path = string.Concat(Application.persistentDataPath, "/", video.name,".mp4");
-        //    Resources.LoadAsync<VideoClip>(path);
-        //}
-    }
+    
     void Start()
     {
 
@@ -35,5 +29,10 @@ public class ClipsChanger : MonoBehaviour
             index++;
             source.clip = clips[index];
         }
+        else
+        {
+            onFinish?.Invoke();
+            player.loopPointReached-= changeClips; 
+        } 
     }
 }
