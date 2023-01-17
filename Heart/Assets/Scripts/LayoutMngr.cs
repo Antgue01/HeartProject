@@ -12,19 +12,21 @@ public class LayoutMngr : MonoBehaviour
     AnimateShader[] _animateShaders;
     [SerializeField]
     ClipsChanger _clipsChanger;
+    [SerializeField]
+    float _clipChangeOffset = 0;
     float buttonMaxTime;
     float shaderMaxTime;
     private void Start()
     {
         buttonMaxTime = 0;
-        shaderMaxTime = _animateShaders[0].getLength("Fade In",0);
+        shaderMaxTime = _animateShaders[0].getLength("Fade In", 0);
         foreach (AnimationClip clip in _buttons[0].runtimeAnimatorController.animationClips)
         {
             float len = clip.length;
             if (len > buttonMaxTime)
                 buttonMaxTime = len;
         }
-       
+
     }
     public void activate()
     {
@@ -33,19 +35,21 @@ public class LayoutMngr : MonoBehaviour
         {
             shader.Play("Fade In");
         }
-        StartCoroutine(PlayButton(shaderMaxTime,"Fade In"));
+        StartCoroutine(PlayButton(shaderMaxTime, "Fade In"));
     }
-    public void deActivate()
+    public void deActivate(int deactivated)
     {
-        foreach (Animator button in _buttons)
+        for (int i = 0; i < _buttons.Length; i++)
         {
-            button.Play("Fade Out");
-            
+            if (i != deactivated)
+                _buttons[i].Play("Fade Out");
+
         }
-        StartCoroutine(PlayShader(buttonMaxTime, "Fade Out"));
+        _buttons[deactivated].Play("Fade Out Blink");
+        StartCoroutine(PlayShader(buttonMaxTime/2, "Fade Out"));
 
     }
-    IEnumerator PlayButton(float waitTime,string anim)
+    IEnumerator PlayButton(float waitTime, string anim)
     {
         yield return new WaitForSeconds(waitTime);
         foreach (Animator button in _buttons)
@@ -63,7 +67,7 @@ public class LayoutMngr : MonoBehaviour
     }
     public void ChangeClips(VideoClip clip)
     {
-        _clipsChanger.changeClipDelayed(clip,shaderMaxTime + buttonMaxTime);
+        _clipsChanger.changeClipDelayed(clip, (shaderMaxTime + buttonMaxTime)+ _clipChangeOffset);
     }
 
 
