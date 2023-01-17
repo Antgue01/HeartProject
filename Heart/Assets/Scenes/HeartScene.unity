@@ -1105,4 +1105,4 @@ MonoBehaviour:
   _animateShaders:
   - {fileID: 1196925098}
   _clipsChanger: {fileID: 965906210}
-  _clipChangeOffset: -0.525
+  _clipChangeOffset: -0.5

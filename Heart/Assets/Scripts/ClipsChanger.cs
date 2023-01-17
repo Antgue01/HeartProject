@@ -13,8 +13,10 @@ public class ClipsChanger : MonoBehaviour
     }
     IEnumerator ChangeClipDelayed(VideoClip clip, float time)
     {
-        yield return new WaitForSeconds(time);
         player.clip = clip;
+        player.Stop();
+        player.Prepare();
+        yield return new WaitForSeconds(time);
         player.Play();
     }
 }
