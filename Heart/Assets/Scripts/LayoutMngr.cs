@@ -2,32 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class LayoutMngr : MonoBehaviour
 {
     [SerializeField]
-    Button[] _buttons;
+    Animator[] _buttons;
     [SerializeField]
     AnimateShader[] _animateShaders;
-    Dictionary<bool, string> activeToAnimation;
+    [SerializeField]
+    ClipsChanger _clipsChanger;
+    float buttonMaxTime;
+    float shaderMaxTime;
     private void Start()
     {
-        activeToAnimation = new Dictionary<bool, string>();
-        activeToAnimation.Add(true, "Fade In");
-        activeToAnimation.Add(false, "Fade Out");
-    }
-    public void activate(bool active)
-    {
-        foreach (var button in _buttons)
+        buttonMaxTime = 0;
+        shaderMaxTime = _animateShaders[0].getLength("Fade In",0);
+        foreach (AnimationClip clip in _buttons[0].runtimeAnimatorController.animationClips)
         {
-            button.interactable = active;
+            float len = clip.length;
+            if (len > buttonMaxTime)
+                buttonMaxTime = len;
         }
-        foreach (var shader in _animateShaders)
+       
+    }
+    public void activate()
+    {
+
+        foreach (AnimateShader shader in _animateShaders)
         {
-            activeToAnimation.TryGetValue(active, out string anim);
+            shader.Play("Fade In");
+        }
+        StartCoroutine(PlayButton(shaderMaxTime,"Fade In"));
+    }
+    public void deActivate()
+    {
+        foreach (Animator button in _buttons)
+        {
+            button.Play("Fade Out");
+            
+        }
+        StartCoroutine(PlayShader(buttonMaxTime, "Fade Out"));
+
+    }
+    IEnumerator PlayButton(float waitTime,string anim)
+    {
+        yield return new WaitForSeconds(waitTime);
+        foreach (Animator button in _buttons)
+        {
+            button.Play(anim);
+        }
+    }
+    IEnumerator PlayShader(float waitTime, string anim)
+    {
+        yield return new WaitForSeconds(waitTime);
+        foreach (AnimateShader shader in _animateShaders)
+        {
             shader.Play(anim);
         }
-    
     }
+    public void ChangeClips(VideoClip clip)
+    {
+        _clipsChanger.changeClipDelayed(clip,shaderMaxTime + buttonMaxTime);
+    }
+
 
 }

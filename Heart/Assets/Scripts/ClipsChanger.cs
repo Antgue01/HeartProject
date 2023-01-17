@@ -1,38 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class ClipsChanger : MonoBehaviour
 {
+    [SerializeField]
     VideoPlayer player;
-    [SerializeField]
-    VideoClip[] clips;
-    [SerializeField]
-    UnityEvent onFinish;
-    int index = 0;
-    
-    void Start()
+    public void changeClipDelayed(VideoClip Clip,float time)
     {
-
-        player = GetComponent<VideoPlayer>();
-        player.loopPointReached += changeClips;
-        player.clip = clips[0];
+        StartCoroutine(ChangeClipDelayed(Clip,time));
     }
-
-    void changeClips(VideoPlayer source)
+    IEnumerator ChangeClipDelayed(VideoClip clip, float time)
     {
-        if (index + 1 < clips.Length)
-        {
-            index++;
-            source.clip = clips[index];
-        }
-        else
-        {
-            onFinish?.Invoke();
-            player.loopPointReached-= changeClips; 
-        } 
+        yield return new WaitForSeconds(time);
+        player.clip = clip;
+        player.Play();
     }
 }

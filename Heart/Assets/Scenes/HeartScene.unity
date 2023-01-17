@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 699231427}
   - component: {fileID: 699231425}
   - component: {fileID: 699231428}
+  - component: {fileID: 699231429}
   m_Layer: 5
   m_Name: No
   m_TagString: Untagged
@@ -254,7 +255,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -279,21 +280,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 965906207}
-        m_TargetAssemblyTypeName: UnityEngine.Video.VideoPlayer, UnityEngine
-        m_MethodName: set_clip
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 32900000, guid: b83e60072a8fbf74c8d7d53c6a63f87a, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Video.VideoClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 965906207}
-        m_TargetAssemblyTypeName: UnityEngine.Video.VideoPlayer, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 2030319922}
+        m_TargetAssemblyTypeName: LayoutMngr, Assembly-CSharp
+        m_MethodName: deActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -305,11 +294,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2030319922}
         m_TargetAssemblyTypeName: LayoutMngr, Assembly-CSharp
-        m_MethodName: activate
-        m_Mode: 6
+        m_MethodName: ChangeClips
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 32900000, guid: b83e60072a8fbf74c8d7d53c6a63f87a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Video.VideoClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -336,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -353,6 +342,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &699231429
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699231423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63d32500a2433bd4f8ec0f41f5123b0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &965906205
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,6 +374,7 @@ GameObject:
   - component: {fileID: 965906207}
   - component: {fileID: 965906206}
   - component: {fileID: 965906209}
+  - component: {fileID: 965906210}
   m_Layer: 0
   m_Name: Video Player
   m_TagString: Untagged
@@ -393,7 +403,7 @@ PlayableDirector:
     m_References:
     - 928a1a34c4e7a0b41a91491f49b1ff03: {fileID: 965906207}
     - a12231f1a449a5d4295197379055a56c: {fileID: 965906207}
-    - 19087ec57612a964086d994524da99d6: {fileID: 1946958233}
+    - 19087ec57612a964086d994524da99d6: {fileID: 0}
     - 681c7c70c18341d4a93082be2f7b9b1d: {fileID: 965906207}
     - 170e849918e37dd489ed4feb33d39f8e: {fileID: 965906207}
     - 0b73899520dfd7347967954dfdeb8140: {fileID: 965906207}
@@ -401,8 +411,8 @@ PlayableDirector:
     - 75f04dfe7928d1c4691ada6520b78fc7: {fileID: 965906207}
     - 33927777b5e936148aa1efff60ac96b1: {fileID: 965906207}
     - ff1c77affa5acfe4c9bca9085ddb2505: {fileID: 965906207}
-    - 3d74d9c9bc295c64eb2a0324021772cb: {fileID: 1946958233}
-    - bb3c3055b0e93f84a93bafb9f9f98988: {fileID: 1946958233}
+    - 3d74d9c9bc295c64eb2a0324021772cb: {fileID: 0}
+    - bb3c3055b0e93f84a93bafb9f9f98988: {fileID: 0}
 --- !u!328 &965906207
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -475,7 +485,7 @@ MonoBehaviour:
       - m_Target: {fileID: 2030319922}
         m_TargetAssemblyTypeName: LayoutMngr, Assembly-CSharp
         m_MethodName: activate
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -484,6 +494,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 1
+--- !u!114 &965906210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965906205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2960f17470eac46bcaec130e26d68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 965906207}
 --- !u!1 &1196925096
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,10 +542,10 @@ RectTransform:
   m_Father: {fileID: 2030319921}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -36.200012}
-  m_SizeDelta: {x: -80, y: 140.6}
+  m_AnchorMin: {x: 0.031000001, y: 0.6853207}
+  m_AnchorMax: {x: 0.9647227, y: 0.8957511}
+  m_AnchoredPosition: {x: 2.5, y: -5.399994}
+  m_SizeDelta: {x: -3, y: -3.399994}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1196925098
 MonoBehaviour:
@@ -563,7 +586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c09317381c99da44285dd9d9dbd30103, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa4225dce0efab4488ff149b4f305639, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -804,6 +827,7 @@ GameObject:
   - component: {fileID: 1889007764}
   - component: {fileID: 1889007763}
   - component: {fileID: 1889007762}
+  - component: {fileID: 1889007765}
   m_Layer: 5
   m_Name: Yes
   m_TagString: Untagged
@@ -826,10 +850,10 @@ RectTransform:
   m_Father: {fileID: 2030319921}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50.30005, y: 39.69998}
-  m_SizeDelta: {x: 243.4, y: 122.2}
+  m_AnchorMin: {x: 0.7512774, y: 0.056}
+  m_AnchorMax: {x: 0.9578321, y: 0.2364978}
+  m_AnchoredPosition: {x: -1.3000488, y: 1.6999817}
+  m_SizeDelta: {x: 3.399994, y: -0.80000305}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1889007762
 MonoBehaviour:
@@ -850,7 +874,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -875,21 +899,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 965906207}
-        m_TargetAssemblyTypeName: UnityEngine.Video.VideoPlayer, UnityEngine
-        m_MethodName: set_clip
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 32900000, guid: d0f2265ccadac524c949db6feb535e74, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Video.VideoClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 965906207}
-        m_TargetAssemblyTypeName: UnityEngine.Video.VideoPlayer, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 2030319922}
+        m_TargetAssemblyTypeName: LayoutMngr, Assembly-CSharp
+        m_MethodName: deActivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -901,11 +913,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2030319922}
         m_TargetAssemblyTypeName: LayoutMngr, Assembly-CSharp
-        m_MethodName: activate
-        m_Mode: 6
+        m_MethodName: ChangeClips
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 32900000, guid: d0f2265ccadac524c949db6feb535e74, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Video.VideoClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -924,14 +936,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5630009907140884da217a34fad04371, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e40c3a37e1adb14cbcce272d49934cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -949,74 +961,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889007759}
   m_CullTransparentMesh: 1
---- !u!1 &1946958232
-GameObject:
+--- !u!95 &1889007765
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1946958234}
-  - component: {fileID: 1946958233}
-  m_Layer: 0
-  m_Name: Video Player (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!328 &1946958233
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946958232}
+  m_GameObject: {fileID: 1889007759}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 66cc32bf4179ff248958240c11e30930, type: 3}
-  m_TargetCameraAlpha: 0
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: c941319de7eab004c9130973f7998238, type: 2}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 0
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 01
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
---- !u!4 &1946958234
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946958232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9295942, y: 1.9094396, z: 0.04867091}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63d32500a2433bd4f8ec0f41f5123b0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &2030319917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttons:
-  - {fileID: 1889007762}
-  - {fileID: 699231425}
+  - {fileID: 1889007765}
+  - {fileID: 699231429}
   _animateShaders:
   - {fileID: 1196925098}
+  _clipsChanger: {fileID: 965906210}

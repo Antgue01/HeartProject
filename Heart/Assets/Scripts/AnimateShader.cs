@@ -17,7 +17,14 @@ public class AnimateShader : MonoBehaviour
             assets.Add(names[i], anims[i]);
         }
     }
-
+    public float getLength(string animation,int attr)
+    {
+        if(assets.TryGetValue(animation, out PlayableAsset anim))
+        {
+            return anim.curve[attr].keys[anim.curve[attr].length - 1].time;
+        }
+        return -1;
+    }
     public void Play(string animation)
     {
         if (assets.TryGetValue(animation, out var asset))
